@@ -1,0 +1,5 @@
+We are using standard PEP 8 python code conventions - https://peps.python.org/pep-0008/ \
+We use black - https://github.com/psf/black \
+If you use visual studio code, you can install the `black formatter` extension \
+If it does not work after restarting the app: copy `settings.json` into .vscode.
+

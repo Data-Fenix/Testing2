@@ -1,0 +1,42 @@
+from dataclasses import dataclass, field
+
+@dataclass(frozen=True)
+class ProteinTag:
+    """
+    A immutable container representing a protein purification tag
+    Args:
+        name: The name of the tag.
+        sequence: The sequence of the tag.
+        origin:The origin of the tag, e.g. a protein this tag is derived from.
+        method: The purification method used with this tag.
+        reference: The pubmed link referencing this tag.
+        length: The length of the tag.
+        fusion: True if the tag is a fusion with another protein or protein domain.
+        
+    Example:
+        >>> tag = ProteinTag(
+        ...    name="Isopep-Tag", 
+        ...    sequence="TDKDMTITFTNKKDAE", 
+        ...    origin="Pilin-C covalent binding", 
+        ...    method="Synthetic peptide", 
+        ...    reference="https://pubmed.ncbi.nlm.nih.gov/20235501/"
+        ...)
+        >>> print(tag) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+        ProteinTag(name='Isopep-Tag', sequence='TDKDMTITFTNKKDAE', 
+        length=16, origin='Pilin-C covalent binding', method='Synthetic peptide', 
+        reference='https://pubmed.ncbi.nlm.nih.gov/20235501/', fusion=False, leader=False, cleavage=False)
+    """
+    name: str = field(repr=True)
+    sequence: str = field(repr=True)
+    length: int = field(repr=True, default=False)
+    origin: str = field(repr=True)
+    method: str = field(repr=True)
+    reference: str = field(repr=True)
+    fusion: bool = field(repr=False, default=False)
+    leader: bool = field(repr=False, default=False)
+    cleavage: bool = field(repr=False, default=False)
+    
+    def __post_init__(self):
+        """Post init method to set the length of the tag if not provided"""
+        if self.le3ngth is False:
+            object.__setattr__(self, 'length', len(self.sequence))

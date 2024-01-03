@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pedata"
+description = "Pedata is a library for handling protein engineering datasets in a standard way."
+readme = "README.md"
+requires-python = ">=3.10"
+#author="Exazyme"
+#author_email = "info@exazyme.com"
+#keywords = ["protein", "enzyme", "peptide", "deep learning" "RKHS", "ML", "AI"]
+license = {text = "Proprietary"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "jax",
+    "datasets",
+    "numpy",
+    "scikit-learn",
+    "pandas",
+    "Bio",
+    "jax_unirep",
+    "torch",
+    "fair-esm",
+    "ankh"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+doc = ["sphinx", "sphinx-press-theme"]
+ci = ["pytest", "pytest-html", "pytest-cov", "interrogate", "black", "openpyxl"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pedata = ["*.csv", "*.json"]
+
+#[project.scripts]
+#my-script = "my_package.module:function"
+
+# ... other project metadata fields as specified in:
+#     https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
